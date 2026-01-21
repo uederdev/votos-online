@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: voto-online
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: admin
+    password: 1234
+    url: jdbc:postgresql://localhost:5432/voto_db
+  jpa:
+    database: POSTGRESQL
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+
