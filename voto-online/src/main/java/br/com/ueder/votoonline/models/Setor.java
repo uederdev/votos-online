@@ -1,6 +1,5 @@
 package br.com.ueder.votoonline.models;
 
-import br.com.ueder.votoonline.dtos.DadosSetor;
 import jakarta.persistence.*;
 
 @Entity

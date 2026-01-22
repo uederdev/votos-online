@@ -1,11 +1,11 @@
-package br.com.ueder.votoonline.exceptions;
+package br.com.ueder.votoonline.exceptions.errors;
 
 import java.time.LocalDateTime;
 
 public class ApiError {
 
     private String mensagem;
-    private LocalDateTime data = LocalDateTime.now();
+    private final LocalDateTime data = LocalDateTime.now();
 
     public ApiError(String mensagem) {
         this.mensagem = mensagem;

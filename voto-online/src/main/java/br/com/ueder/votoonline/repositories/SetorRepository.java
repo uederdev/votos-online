@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface SetorRepository extends JpaRepository<Setor, String> {
 
     Optional<Setor> findById(Long id);
+
+    Optional<Setor> findByControle(String controle);
 }

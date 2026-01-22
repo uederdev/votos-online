@@ -7,9 +7,14 @@ import java.util.List;
 
 public interface SetorService {
 
-    List<DadosSetor> findAll();
+    List<Setor> findAll();
 
     Setor findById(Long id);
 
     Setor save(DadosSetor entity);
+
+    Setor findByControle(String controle);
+
+    Setor update(String controle, DadosSetor dadosSetor);
+
 }

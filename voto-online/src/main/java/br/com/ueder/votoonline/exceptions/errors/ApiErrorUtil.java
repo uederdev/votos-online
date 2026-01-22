@@ -1,5 +1,8 @@
-package br.com.ueder.votoonline.exceptions;
+package br.com.ueder.votoonline.exceptions.errors;
 
+import br.com.ueder.votoonline.exceptions.ObjectNotFoundException;
+import br.com.ueder.votoonline.exceptions.RNException;
+import br.com.ueder.votoonline.exceptions.RNRegistroDuplicadoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,4 +23,9 @@ public class ApiErrorUtil {
                 .body(new ApiError(ex.getMessage()));
     }
 
+    @ExceptionHandler(RNException.class)
+    public ResponseEntity<ApiError> handleRNException(RNException ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ApiError(ex.getMessage()));
+    }
 }
