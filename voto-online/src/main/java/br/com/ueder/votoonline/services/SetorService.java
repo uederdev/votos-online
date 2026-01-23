@@ -17,4 +17,5 @@ public interface SetorService {
 
     Setor update(String controle, DadosSetor dadosSetor);
 
+    void delete(String controle);
 }

@@ -43,7 +43,7 @@ public class SetorController {
     @PostMapping
     public ResponseEntity<?> save(@RequestBody @Validated DadosSetor entity){
         Setor setor = service.save(entity);
-        return ResponseEntity.created(Util.getUri("/apis/v1/setores/{id}", setor.getControle()))
+        return ResponseEntity.created(Util.getUri("/apis/v1/setores/{controle}", setor.getControle()))
                 .body(converter.toDto(setor));
     }
 
@@ -54,5 +54,11 @@ public class SetorController {
     ){
         Setor setor = service.update(controle, dadosSetor);
         return ResponseEntity.ok(converter.toDto(setor));
+    }
+
+    @DeleteMapping("/{controle}")
+    public ResponseEntity<DadosSetor> delete(@PathVariable String controle){
+        service.delete(controle);
+        return ResponseEntity.noContent().build();
     }
 }

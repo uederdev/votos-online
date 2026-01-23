@@ -19,13 +19,13 @@ public class ApiErrorUtil {
 
     @ExceptionHandler(RNRegistroDuplicadoException.class)
     public ResponseEntity<ApiError> handleRNRegistroDuplicadoException(RNRegistroDuplicadoException ex){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+        return ResponseEntity.badRequest()
                 .body(new ApiError(ex.getMessage()));
     }
 
     @ExceptionHandler(RNException.class)
     public ResponseEntity<ApiError> handleRNException(RNException ex){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+        return ResponseEntity.badRequest()
                 .body(new ApiError(ex.getMessage()));
     }
 }

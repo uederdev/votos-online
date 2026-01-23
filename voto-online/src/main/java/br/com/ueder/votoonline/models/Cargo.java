@@ -3,8 +3,8 @@ package br.com.ueder.votoonline.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Setores")
-public class Setor {
+@Table(name = "Cargos")
+public class Cargo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -16,10 +16,10 @@ public class Setor {
     @Column
     private boolean excluido = false;
 
-    public Setor() {
+    public Cargo() {
     }
 
-    public Setor(Long id, String descricao) {
+    public Cargo(Long id, String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
@@ -48,11 +48,11 @@ public class Setor {
         this.descricao = descricao;
     }
 
-    public void excluir(){
-        this.excluido = true;
+    public boolean isExcluido() {
+        return excluido;
     }
 
-    public Boolean isExcluido(){
-        return excluido;
+    public void excluir(){
+        this.excluido = true;
     }
 }

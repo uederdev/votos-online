@@ -52,6 +52,7 @@ public class SetorServiceImpl implements SetorService{
     }
 
     @Override
+    @Transactional
     public Setor update(String controle, DadosSetor dadosSetor) {
         Setor setorEncontrado = findByControle(controle);
         if (!dadosSetor.id().equals(setorEncontrado.getId())){
@@ -59,5 +60,13 @@ public class SetorServiceImpl implements SetorService{
         }
         setorEncontrado.setDescricao(dadosSetor.descricao());
         return repository.saveAndFlush(setorEncontrado);
+    }
+
+    @Override
+    @Transactional
+    public void delete(String controle) {
+        Setor setor = findByControle(controle);
+        setor.excluir();
+        repository.saveAndFlush(setor);
     }
 }
