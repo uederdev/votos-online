@@ -1,11 +1,12 @@
-package br.com.ueder.votoonline.converters;
+package br.com.ueder.votoonline.converters.entities;
 
+import br.com.ueder.votoonline.converters.ConverterImpl;
 import br.com.ueder.votoonline.dtos.DadosSetor;
 import br.com.ueder.votoonline.models.Setor;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SetorConverter implements IConverter<Setor, DadosSetor>{
+public class SetorConverter extends ConverterImpl<Setor, DadosSetor> {
 
     @Override
     public Setor toModel(DadosSetor dto) {

@@ -1,9 +1,9 @@
 package br.com.ueder.votoonline.controllers.v1;
 
-import br.com.ueder.votoonline.converters.CargoConverter;
+import br.com.ueder.votoonline.converters.entities.CargoConverter;
 import br.com.ueder.votoonline.dtos.DadosCargo;
 import br.com.ueder.votoonline.models.Cargo;
-import br.com.ueder.votoonline.services.CargoService;
+import br.com.ueder.votoonline.services.cargos.CargoService;
 import br.com.ueder.votoonline.utils.Util;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,36 +16,32 @@ import java.util.List;
 public class CargoController {
 
     private final CargoService service;
-    private final CargoConverter converter;
 
     public CargoController(CargoService service, CargoConverter converter) {
         this.service = service;
-        this.converter = converter;
     }
 
     @GetMapping
     public ResponseEntity<List<DadosCargo>> getAll(){
-        List<DadosCargo> cargos = service.findAll()
-                .stream()
-                .map(converter::toDto).toList();
+        List<DadosCargo> cargos = service.getAllDTO();
         return ResponseEntity.ok(cargos);
     }
 
     @GetMapping("/{id:\\d+}")
     public ResponseEntity<DadosCargo> getById(@PathVariable Long id){
-        return ResponseEntity.ok(converter.toDto(service.findById(id)));
+        return ResponseEntity.ok(service.findByIdDTO(id).get());
     }
 
     @GetMapping("/{controle:[0-9a-fA-F\\-]{36}}")
     public ResponseEntity<DadosCargo> getByControle(@PathVariable String controle){
-        return ResponseEntity.ok(converter.toDto(service.findByControle(controle)));
+        return ResponseEntity.ok(service.findByControleDTO(controle).get());
     }
 
     @PostMapping
     public ResponseEntity<DadosCargo> save(@RequestBody @Validated DadosCargo entity){
-        Cargo cargo = service.save(entity);
-        return ResponseEntity.created(Util.getUri("/apis/v1/cargos/{controle}",cargo.getControle()))
-                .body(converter.toDto(cargo));
+        DadosCargo cargo = service.saveDto(entity);
+        return ResponseEntity.created(Util.getUri("/apis/v1/cargos/{controle}",cargo.controle()))
+                .body(cargo);
     }
 
     @DeleteMapping("/{controle}")
@@ -59,9 +55,7 @@ public class CargoController {
             @PathVariable String controle,
             @RequestBody @Validated DadosCargo entity
     ){
-        Cargo cargo = service.update(controle, entity);
-        return ResponseEntity.ok(converter.toDto(cargo));
+        DadosCargo cargo = service.updateDto(controle, entity);
+        return ResponseEntity.ok(cargo);
     }
-
-
 }

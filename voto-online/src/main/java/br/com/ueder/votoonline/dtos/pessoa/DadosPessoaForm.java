@@ -1,16 +1,16 @@
-package br.com.ueder.votoonline.dtos;
+package br.com.ueder.votoonline.dtos.pessoa;
 
 import java.time.LocalDate;
 
-public record DadosPessoa(
+public record DadosPessoaForm(
         String controle,
         Long id,
         String nomeCompleto,
         LocalDate dataAdmissao,
         LocalDate dataRescisao,
         String matricula,
-        DadosCargo cargo,
-        DadosSetor setor,
+        String cargo,
+        String setor,
         String pathFoto
 ) {
 }

@@ -16,7 +16,7 @@ public interface SetorRepository extends JpaRepository<Setor, String> {
     Optional<Setor> findById(@Param("id") Long id);
 
     @Query("select s from Setor s where s.excluido = false and s.controle = :controle ")
-    Optional<Setor> findByControle(@Param("controle")String controle);
+    Optional<Setor> findByControle(@Param("controle") String controle);
 
     @Query("select s from Setor s where s.excluido = false")
     List<Setor> findAll();

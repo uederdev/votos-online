@@ -1,11 +1,12 @@
-package br.com.ueder.votoonline.converters;
+package br.com.ueder.votoonline.converters.entities;
 
+import br.com.ueder.votoonline.converters.ConverterImpl;
 import br.com.ueder.votoonline.dtos.DadosCargo;
 import br.com.ueder.votoonline.models.Cargo;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CargoConverter implements IConverter<Cargo, DadosCargo>{
+public class CargoConverter extends ConverterImpl<Cargo, DadosCargo> {
 
     @Override
     public Cargo toModel(DadosCargo dto) {
@@ -18,4 +19,5 @@ public class CargoConverter implements IConverter<Cargo, DadosCargo>{
     public DadosCargo toDto(Cargo model) {
         return new DadosCargo(model.getControle(), model.getId(), model.getDescricao());
     }
+
 }
